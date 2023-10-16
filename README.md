@@ -12,6 +12,8 @@ This software focuses on multiple UN SDGs which are:
 A software that allows users to use their food waste/leftover to make creative and delicious recipes. 
 
 # Project Background
-Globally, around 13 percent of food produced is lost between harvest and retail, while an estimated 17 percent of total global food production is wasted in households, in the food service and in retail all together. Food waste is a significant global issue with environmental, economic, and ethical implications. By providing users with creative ways to use leftovers, this software can help individuals reduce their personal food waste, contributing to a more sustainable food system worldwide.
+Food waste is a pressing global issue with far-reaching consequences. Approximately one-third of all food produced for human consumption is wasted each year, leading to significant environmental, economic, and ethical concerns. Food waste contributes to environmental degradation, including greenhouse gas emissions, excessive water usage, and habitat destruction. As well, reducing food waste not only benefits the environment but also offers economic advantages. By using up leftovers, individuals can save money and make their food budgets go further.
+The app will tackle the issue of food waste at its source by helping individuals use what they already have, reducing the volume of food that ends up in landfills.
+The app also will provide tailored solutions based on the specific ingredients users have, their dietary preferences, and available kitchen equipment. It will offer a personalized approach to tackling food waste.
 
 
