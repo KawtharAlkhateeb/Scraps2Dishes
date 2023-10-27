@@ -16,4 +16,7 @@ Food waste is a pressing global issue with far-reaching consequences. Approximat
 The app will tackle the issue of food waste at its source by helping individuals use what they already have, reducing the volume of food that ends up in landfills.
 The app will also provide tailored solutions based on the specific ingredients users have, their dietary preferences, and available kitchen equipment. It will offer a personalized approach to tackling food waste.
 
+# Vlogs 
+[Vlog#1](https://youtu.be/HRdGLskLL9I)
+
 
