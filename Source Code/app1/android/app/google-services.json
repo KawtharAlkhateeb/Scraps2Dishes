@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "104539423398",
+    "project_id": "scraps2dishes",
+    "storage_bucket": "scraps2dishes.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:104539423398:android:a056e6b98a7603e7f8ea67",
+        "android_client_info": {
+          "package_name": "com.example.app1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTJ5ceKhgUlRsd2Mq9nOQ1yECekNLvXWI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
