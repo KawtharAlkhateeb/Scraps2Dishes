@@ -1,4 +1,5 @@
 # Scraps2Dishes
+![Scraps2Dishes logo](Source Code/app1/images/Logo 1.png)
 
 Kawthar Alkhateeb 
 
