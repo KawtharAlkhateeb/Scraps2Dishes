@@ -57,11 +57,6 @@ class _RecipeSearchScreenState extends State<RecipeSearchScreen> {
   @override
    Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text('Scraps2Dishes'),
-      //   backgroundColor: Color.fromARGB(255, 255, 226, 107),
-      //   leading: Image.asset('images/Logo 1.png', width: 250, height: 250,),
-      // ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -126,7 +121,7 @@ class _RecipeSearchScreenState extends State<RecipeSearchScreen> {
                       children: [
                         Image.network(
                           image,
-                            width: 300, // Adjust width as needed
+                          width: 300, // Adjust width as needed
                           height: 200, // Adjust height as needed
                           fit: BoxFit.cover,
                           errorBuilder: (context, error, stackTrace) {
