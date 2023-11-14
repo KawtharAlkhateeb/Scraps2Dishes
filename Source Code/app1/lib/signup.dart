@@ -150,14 +150,14 @@ class SignupScreen extends StatelessWidget {
                           MaterialPageRoute(builder: (context) => RecipeSearchScreen()),
                         );
                       },
-                      child: const Text(
-                        "Sign up",
-                        style: TextStyle(fontSize: 20),
-                      ),
                       style: ElevatedButton.styleFrom(
                         shape: const StadiumBorder(),
                         padding: const EdgeInsets.symmetric(vertical: 16),
                         backgroundColor: Color.fromARGB(255, 239, 163, 69),
+                      ),
+                      child: const Text(
+                        "Sign up",
+                        style: TextStyle(fontSize: 20),
                       ),
                     )
                 ),

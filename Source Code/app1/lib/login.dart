@@ -73,7 +73,7 @@ class LoginPage extends StatelessWidget {
           obscureText: true,
         ),
         const SizedBox(height: 10),
-        Container( 
+        SizedBox( 
           width: 140,
           height: 45,
           child: 
