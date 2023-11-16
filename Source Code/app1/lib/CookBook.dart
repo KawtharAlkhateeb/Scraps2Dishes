@@ -1,11 +1,9 @@
 import 'package:app1/AddRecipe.dart';
 import 'package:flutter/material.dart';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class CookbookScreen extends StatelessWidget {
-  final List<Recipe> recipes;
-
-  CookbookScreen({required this.recipes});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,10 +12,40 @@ class CookbookScreen extends StatelessWidget {
         backgroundColor: Color.fromARGB(255, 255, 226, 107),
         leading: Image.asset('images/Logo 1.png', width: 250, height: 250,),
       ),
-      body: ListView.builder(
-        itemCount: recipes.length,
-        itemBuilder: (context, index) {
-          return RecipeCard(recipe: recipes[index]);
+      body: StreamBuilder<QuerySnapshot>(
+        stream: FirebaseFirestore.instance.collection('recipes').snapshots(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return CircularProgressIndicator(); // Loading indicator while waiting for data
+          }
+
+          if (snapshot.hasError) {
+            return Text('Error: ${snapshot.error}');
+          }
+
+          // Use the snapshot data to build your UI
+          final recipes = snapshot.data?.docs.map((doc) {
+            final data = doc.data() as Map<String, dynamic>;
+            return Recipe(
+              title: data['recipeName'] ?? '',
+              ingredients: data['ingredients'] ?? '',
+              instructions: data['instructions'] ?? '',
+              userName: data['userId'] ?? '',
+            );
+          }).toList();
+
+          return ListView.builder(
+            itemCount: recipes?.length ?? 0,
+            itemBuilder: (context, index) {
+              return RecipeCard(recipe: recipes?[index] ?? Recipe(
+                title: 'Default Title',
+                ingredients: 'Default Ingredients',
+                instructions: 'Default Instructions',
+                userName: 'Default User',
+              ),
+              );
+            },
+          );
         },
       ),
       floatingActionButton: FloatingActionButton(
@@ -45,6 +73,7 @@ class CookbookScreen extends StatelessWidget {
   }
 }
 
+
 class RecipeCard extends StatelessWidget {
   final Recipe recipe;
 
@@ -57,15 +86,15 @@ class RecipeCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Image.network(
-            recipe.imageUrl,
-            width: double.infinity,
-            height: 150.0,
-            fit: BoxFit.cover,
-            errorBuilder: (context, error, stackTrace) {
-              return Icon(Icons.error); // Display an error icon or placeholder
-            },
-          ),
+          // Image.network(
+          //   recipe.imageUrl,
+          //   width: double.infinity,
+          //   height: 150.0,
+          //   fit: BoxFit.cover,
+          //   errorBuilder: (context, error, stackTrace) {
+          //     return Icon(Icons.error); // Display an error icon or placeholder
+          //   },
+          // ),
           Padding(
             padding: EdgeInsets.all(10.0),
             child: Column(
@@ -80,6 +109,7 @@ class RecipeCard extends StatelessWidget {
                 SizedBox(height: 8.0),
                 Text('Instructions: ${recipe.instructions}', style: TextStyle(color: Color.fromARGB(255, 53, 55, 53), fontWeight: FontWeight.bold)),
                 SizedBox(height: 20),
+                Text("Added by: ${recipe.userName}",style: TextStyle(color: Color.fromARGB(255, 53, 55, 53))), 
               ],
             ),
           ),
@@ -91,14 +121,12 @@ class RecipeCard extends StatelessWidget {
 
 class Recipe {
   final String title;
-  final String imageUrl;
   final String ingredients;
   final String instructions;
   final String userName; 
 
   Recipe({
     required this.title,
-    required this.imageUrl,
     required this.ingredients,
     required this.instructions,
     required this.userName, 

@@ -5,14 +5,12 @@ import 'FoodWasteInputPage.dart';
 List<Recipe> myRecipes = [
   Recipe(
     title: 'Chocolate Cake',
-    imageUrl: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.mybakingaddiction.com%2Fthe-best-chocolate-cake%2F&psig=AOvVaw0PjHJYdM5ICah22_TTLnEt&ust=1700235331140000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCKC-j6rsyIIDFQAAAAAdAAAAABAE',
     ingredients: 'Flour, Sugar, Cocoa, ...',
     instructions: '1. Mix dry ingredients, 2. Add wet ingredients, ...',
     userName: 'Unknown', 
   ),
   Recipe(
     title: 'Vegetable Stir Fry',
-    imageUrl: 'https://example.com/vegetable_stir_fry.jpg',
     ingredients: 'Broccoli, Carrots, Peppers, ...',
     instructions: '1. Chop vegetables, 2. Stir-fry in a pan, ...',
     userName: 'unknow', 
@@ -40,7 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          // mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.all(16.0),
@@ -68,7 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         onPressed: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => CookbookScreen(recipes: myRecipes)),
+                            MaterialPageRoute(builder: (context) => CookbookScreen()),
                           );
                         },
                         child: const Text("Cook book", style: TextStyle(color: Color.fromARGB(255, 82, 181, 77), fontWeight: FontWeight.bold)),

@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'CookBook.dart'; 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 List<Recipe> userAddedRecipe = [
   Recipe(
     title: 'Chocolate Cake',
-    imageUrl: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.mybakingaddiction.com%2Fthe-best-chocolate-cake%2F&psig=AOvVaw0PjHJYdM5ICah22_TTLnEt&ust=1700235331140000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCKC-j6rsyIIDFQAAAAAdAAAAABAE',
     ingredients: 'Flour, Sugar, Cocoa, ...',
     instructions: '1. Mix dry ingredients, 2. Add wet ingredients, ...',
     userName: 'Unknown', 
   ),
 ];
+final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
 class MyApp extends StatelessWidget {
 
@@ -116,19 +118,14 @@ class MyCustomFormState extends State<MyCustomForm> {
             child: ElevatedButton(
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
-                  // If the form is valid, add the recipe to the list
-                  Recipe newRecipe = Recipe(
-                    title: recipeNameController.text,
-                    ingredients: ingredientsController.text,
-                    instructions: instructionsController.text,
-                    // You can add a placeholder image URL or leave it empty
-                    imageUrl: '',
-                    userName: nameController.text, 
-                  );
-
-                  userAddedRecipe.add(newRecipe);
-
-                  // Display a snackbar or navigate to the cookbook screen
+                  
+                  CollectionReference recipesCollection = _firestore.collection('recipes');
+                  recipesCollection.add({
+                    'userId': nameController.text,
+                    'recipeName': recipeNameController.text,
+                    'ingredients': ingredientsController.text,
+                    'instructions': instructionsController.text,
+                  }); 
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text('Recipe added successfully'),
@@ -136,7 +133,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                   );
                   Navigator.push(
                     context,
-                      MaterialPageRoute(builder: (context) => CookbookScreen(recipes: userAddedRecipe)),
+                      MaterialPageRoute(builder: (context) => CookbookScreen()),
                   );
                 }
               },
