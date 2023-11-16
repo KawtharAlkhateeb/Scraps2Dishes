@@ -13,7 +13,7 @@ class LoginPage extends StatelessWidget {
       routes: {
         '/signup': (context) => SignupScreen(), // Route to the signup page
         '/login': (context) => LoginPage(), // Route to the login page
-        '/recipes':(context) => RecipeSearchScreen(), // route to recipe search page
+        // '/recipes':(context) => RecipeSearchScreen(), // route to recipe search page
       },
       home: Scaffold(
         body: Container(
@@ -79,10 +79,10 @@ class LoginPage extends StatelessWidget {
           child: 
             ElevatedButton(
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => RecipeSearchScreen()),
-              );
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(builder: (context) => RecipeSearchScreen()),
+              // );
             },
             style: ElevatedButton.styleFrom(
               shape: const StadiumBorder(),

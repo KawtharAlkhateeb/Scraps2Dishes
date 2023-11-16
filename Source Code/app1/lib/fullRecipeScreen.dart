@@ -5,10 +5,10 @@ class FullRecipeScreen extends StatelessWidget {
   final String recipeTitle;
   final List<String> ingredientLines;
 
-  FullRecipeScreen({
+  FullRecipeScreen(String s, {
       required this.recipeTitle, 
       required this.ingredientLines, 
-    });
+  });
 
   @override
   Widget build(BuildContext context) {

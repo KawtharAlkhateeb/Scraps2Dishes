@@ -1,8 +1,10 @@
+import 'package:app1/FoodWasteInputPage.dart';
 import 'package:flutter/material.dart';
 import 'recipes.dart'; 
 
 class LogoAnimationScreen extends StatefulWidget {
   @override
+  // ignore: library_private_types_in_public_api
   _LogoAnimationScreenState createState() => _LogoAnimationScreenState();
   
 }
@@ -33,7 +35,7 @@ class _LogoAnimationScreenState extends State<LogoAnimationScreen> with SingleTi
   void _navigateToMainContent() {
     Navigator.of(context).pushReplacement(MaterialPageRoute(
       builder: (context) {
-        return RecipeSearchScreen();
+        return FoodWasteInputPage();
       },
     ));
   }

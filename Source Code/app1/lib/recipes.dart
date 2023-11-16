@@ -14,7 +14,6 @@ void _launchURL(String url) async {
   }
 }
 
-
 class EdamamService {
   Future<List<dynamic>> searchRecipes(String apiUrl) async {
     final response = await http.get(
@@ -29,8 +28,16 @@ class EdamamService {
     }
   }
 }
+// ignore: must_be_immutable
 class RecipeSearchScreen extends StatefulWidget {
+  String query; 
+  String dietaryRestriction; 
+  RecipeSearchScreen({
+      required this.query, 
+      required this.dietaryRestriction, 
+  });
   @override
+  // ignore: library_private_types_in_public_api
   _RecipeSearchScreenState createState() => _RecipeSearchScreenState();
 }
 
@@ -84,29 +91,29 @@ class _RecipeSearchScreenState extends State<RecipeSearchScreen> {
               ), 
             ),
             SizedBox( height: 30, width: 30,), 
-            TextField(
-              controller: _searchController,
-              decoration: InputDecoration(
-                hintText: 'Enter ingredients (e.g., chicken, rice)',
-              ),
-            ),
-            SizedBox(height: 15),
-            ElevatedButton(
-              onPressed: () {
-                String query = _searchController.text;
-                _searchRecipes(query);
-              },
-              style: ElevatedButton.styleFrom(
-               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(5.0),
-              ),
-              backgroundColor: Color.fromARGB(255, 82, 181, 77),
-            ),
-            child: const Text(
-              "Search Recipes",
-              style: TextStyle(fontSize: 18),
-            ),
-            ),
+            // TextField(
+            //   controller: _searchController,
+            //   decoration: InputDecoration(
+            //     hintText: 'Enter ingredients (e.g., chicken, rice)',
+            //   ),
+            // ),
+            // SizedBox(height: 15),
+            // ElevatedButton(
+            //   onPressed: () {
+            //     String query = _searchController.text;
+            //     _searchRecipes(query);
+            //   },
+            //   style: ElevatedButton.styleFrom(
+            //    shape: RoundedRectangleBorder(
+            //     borderRadius: BorderRadius.circular(5.0),
+            //   ),
+            //   backgroundColor: Color.fromARGB(255, 82, 181, 77),
+            // ),
+            // child: const Text(
+            //   "Search Recipes",
+            //   style: TextStyle(fontSize: 18),
+            // ),
+            // ),
             SizedBox(height: 20),
             Expanded(
               child: ListView.builder(
@@ -125,8 +132,8 @@ class _RecipeSearchScreenState extends State<RecipeSearchScreen> {
                     child: Column(
                       children: [
                         Image.network(
-                          image,
-                            width: 300, // Adjust width as needed
+                          Uri.encodeFull(image),
+                          width: 300, // Adjust width as needed
                           height: 200, // Adjust height as needed
                           fit: BoxFit.cover,
                           errorBuilder: (context, error, stackTrace) {
@@ -142,16 +149,16 @@ class _RecipeSearchScreenState extends State<RecipeSearchScreen> {
                         ),
                         ElevatedButton(
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => FullRecipeScreen(
-                                  recipeTitle: _searchResults[index]['recipe']['label'],
-                                  ingredientLines: List<String>.from(_searchResults[index]['recipe']['ingredientLines']),
-                                  // recipeInstructions: _searchResults[index]['recipe']['instructions'], // Adjust this based on your actual data structure
-                                ),
-                              ),
-                            );
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(
+                            //     builder: (context) => FullRecipeScreen(
+                            //       recipeTitle: _searchResults[index]['recipe']['label'],
+                            //       ingredientLines: List<String>.from(_searchResults[index]['recipe']['ingredientLines']),
+                            //       // recipeInstructions: _searchResults[index]['recipe']['instructions'], // Adjust this based on your actual data structure
+                            //     ),
+                            //   ),
+                            // );
                           },
                           child: Text('View more'),
                         ),
