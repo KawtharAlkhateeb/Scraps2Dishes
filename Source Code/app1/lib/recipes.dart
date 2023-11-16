@@ -42,13 +42,12 @@ class RecipeSearchScreen extends StatefulWidget {
 }
 
 class _RecipeSearchScreenState extends State<RecipeSearchScreen> {
-  final TextEditingController _searchController = TextEditingController();
   List<dynamic> _searchResults = [];
-  Future<void> _searchRecipes(String query) async {
+  Future<void> _searchRecipes() async {
     // const String appId = '7b9709ca';
     // const String appKey = '56a4fea3e7b52a84e5f1f1df6fc822a1';
 
-    final apiUrl = 'https://api.edamam.com/api/recipes/v2?type=public&q=$query&app_id=7b9709ca&app_key=7e0129f0430ff85fc362dede31008d5f';
+    final apiUrl = 'https://api.edamam.com/api/recipes/v2?type=public&q=${widget.query}&app_id=7b9709ca&app_key=7e0129f0430ff85fc362dede31008d5f';
 
     final service = EdamamService();
 
@@ -62,6 +61,11 @@ class _RecipeSearchScreenState extends State<RecipeSearchScreen> {
     }
   }
   @override
+    void initState() {
+      super.initState();
+      // Call the search method when the widget is initialized
+      _searchRecipes();
+    }
    Widget build(BuildContext context) {
     return Scaffold(
       // appBar: AppBar(
