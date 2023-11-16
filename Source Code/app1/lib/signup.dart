@@ -25,10 +25,10 @@ class SignupScreen extends StatelessWidget {
         'dietaryRestrictions': dietaryRestrictionsController.text,
       });
 
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => RecipeSearchScreen()),
-      );
+      // Navigator.push(
+      //   context,
+      //   MaterialPageRoute(builder: (context) => RecipeSearchScreen()),
+      // );
     } catch (e) {
       print('Error during sign-up: $e');
     }
@@ -40,7 +40,7 @@ class SignupScreen extends StatelessWidget {
       routes: {
         '/signup': (context) => SignupScreen(), // Route to the signup page
         '/login': (context) => LoginPage(), // Route to the login page
-        '/recipes':(context) => RecipeSearchScreen(), // route to recipe search page
+        // '/recipes':(context) => RecipeSearchScreen(), // route to recipe search page
       },
       home: Scaffold(
         body: SingleChildScrollView(
@@ -145,10 +145,10 @@ class SignupScreen extends StatelessWidget {
 
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => RecipeSearchScreen()),
-                        );
+                        // Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(builder: (context) => RecipeSearchScreen()),
+                        // );
                       },
                       style: ElevatedButton.styleFrom(
                         shape: const StadiumBorder(),
