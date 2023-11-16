@@ -2,21 +2,7 @@
 import 'package:flutter/material.dart';
 import 'CookBook.dart';
 import 'FoodWasteInputPage.dart'; 
-List<Recipe> myRecipes = [
-  Recipe(
-    title: 'Chocolate Cake',
-    ingredients: 'Flour, Sugar, Cocoa, ...',
-    instructions: '1. Mix dry ingredients, 2. Add wet ingredients, ...',
-    userName: 'Unknown', 
-  ),
-  Recipe(
-    title: 'Vegetable Stir Fry',
-    ingredients: 'Broccoli, Carrots, Peppers, ...',
-    instructions: '1. Chop vegetables, 2. Stir-fry in a pan, ...',
-    userName: 'unknow', 
-  ),
-  // Add more recipes as needed
-];
+
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
 
@@ -73,14 +59,14 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 50),
+                  const SizedBox(height: 30),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children:[
                       Row(
                         children: [
                           Text(
-                            "Would you like to use your leftovers in a recipe?"
+                            "Use your leftovers in a recipe?"
                           ), 
                           TextButton(
                             onPressed: () {

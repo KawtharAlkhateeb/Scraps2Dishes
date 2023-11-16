@@ -26,7 +26,8 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: Text("Add a recipe to the community book", style: TextStyle(color: Color.fromARGB(255, 82, 181, 77), fontWeight: FontWeight.bold)),
           backgroundColor: Color.fromARGB(255, 255, 226, 107),
-          leading: Image.asset('images/Logo 1.png', width: 250, height: 250,),
+          leading: 
+            Image.asset('images/Logo 1.png', width: 250, height: 250,),
         ),
         body: const MyCustomForm(),
       ),

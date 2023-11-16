@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:app1/HomePage.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -47,7 +48,7 @@ class _RecipeSearchScreenState extends State<RecipeSearchScreen> {
     // const String appId = '7b9709ca';
     // const String appKey = '56a4fea3e7b52a84e5f1f1df6fc822a1';
 
-    final apiUrl = 'https://api.edamam.com/api/recipes/v2?type=public&q=${widget.query}&app_id=7b9709ca&app_key=7e0129f0430ff85fc362dede31008d5f';
+    final apiUrl = 'https://api.edamam.com/api/recipes/v2?type=public&q=${widget.query}&app_id=7b9709ca&app_key=7e0129f0430ff85fc362dede31008d5f&health=vegan';
 
     final service = EdamamService();
 
@@ -80,7 +81,17 @@ class _RecipeSearchScreenState extends State<RecipeSearchScreen> {
             Container(
               child: Row(
                 children:[
+                  IconButton(
+                    icon: Icon(Icons.arrow_back),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                      MaterialPageRoute(builder: (context) => MyHomePage(title: "Scraps2Dishes",)),
+                    );
+                  },
+                  ),
                   Center(
+                    
                     child: 
                       CircleAvatar( 
                         radius: 40.0, 
@@ -131,6 +142,8 @@ class _RecipeSearchScreenState extends State<RecipeSearchScreen> {
                   final ingredientLines = recipe['ingredientLines'];
                   final source = recipe['source'];
                   final recipeUrl = recipe['url'];
+                  final healthLabels = recipe['healthLabels']; 
+
                   // Build recipe cards here
                   return Card(
                     child: Column(
@@ -151,6 +164,9 @@ class _RecipeSearchScreenState extends State<RecipeSearchScreen> {
                         ListTile(
                           title: Text('Source: $source'),
                         ),
+                        ListTile(
+                          title: Text("Health labels: $healthLabels"), 
+                        ), 
                         ElevatedButton(
                           onPressed: () {
                             // Navigator.push(
@@ -159,7 +175,6 @@ class _RecipeSearchScreenState extends State<RecipeSearchScreen> {
                             //     builder: (context) => FullRecipeScreen(
                             //       recipeTitle: _searchResults[index]['recipe']['label'],
                             //       ingredientLines: List<String>.from(_searchResults[index]['recipe']['ingredientLines']),
-                            //       // recipeInstructions: _searchResults[index]['recipe']['instructions'], // Adjust this based on your actual data structure
                             //     ),
                             //   ),
                             // );

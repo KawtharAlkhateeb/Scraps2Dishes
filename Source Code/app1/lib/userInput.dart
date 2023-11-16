@@ -54,7 +54,7 @@ class _DropdownButtonExampleState extends State<DropdownButtonExample> {
             Text("Dietary Requirments"), 
             SizedBox(width: 20), 
             Container(
-              width: 250, // Set your desired width
+              width: 150, // Set your desired width
               child: DropdownButton<String>(
                 value: dropdownValue,
                 icon: Visibility (visible:false, child: Icon(Icons.arrow_downward)),
