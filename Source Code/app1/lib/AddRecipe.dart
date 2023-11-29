@@ -3,14 +3,6 @@ import 'CookBook.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-List<Recipe> userAddedRecipe = [
-  Recipe(
-    title: 'Chocolate Cake',
-    ingredients: 'Flour, Sugar, Cocoa, ...',
-    instructions: '1. Mix dry ingredients, 2. Add wet ingredients, ...',
-    userName: 'Unknown', 
-  ),
-];
 final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
 class MyApp extends StatelessWidget {
@@ -26,8 +18,14 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: Text("Add a recipe to the community book", style: TextStyle(color: Color.fromARGB(255, 82, 181, 77), fontWeight: FontWeight.bold)),
           backgroundColor: Color.fromARGB(255, 255, 226, 107),
-          leading: 
-            Image.asset('images/Logo 1.png', width: 250, height: 250,),
+          leading: CircleAvatar( 
+            radius: 14, //radius of avatar 
+            backgroundColor: Color.fromARGB(255, 82, 181, 77), //color 
+            child: Padding( 
+              padding: const EdgeInsets.all(2), // Border radius 
+              child: ClipOval(child: Image.asset('images/Logo 1.png')), 
+            ), 
+          )
         ),
         body: const MyCustomForm(),
       ),
@@ -53,6 +51,7 @@ class MyCustomFormState extends State<MyCustomForm> {
   TextEditingController recipeNameController = TextEditingController();
   TextEditingController ingredientsController = TextEditingController();
   TextEditingController instructionsController = TextEditingController();
+  TextEditingController categoryController = TextEditingController(); 
 
   @override
   Widget build(BuildContext context) {
@@ -90,6 +89,7 @@ class MyCustomFormState extends State<MyCustomForm> {
           SizedBox(height: 20,), 
           TextFormField(
             controller: ingredientsController,
+            maxLines: null,
             decoration: InputDecoration(
               hintText: 'Enter ingredients (comma-separated (,))',
             ),
@@ -103,12 +103,26 @@ class MyCustomFormState extends State<MyCustomForm> {
           SizedBox(height: 20,), 
           TextFormField(
             controller: instructionsController,
+            maxLines: null,
             decoration: InputDecoration(
               hintText: 'Enter recipe instructions',
             ),
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return 'Please enter instructions';
+              }
+              return null;
+            },
+          ),
+          SizedBox(height: 20,), 
+          TextFormField(
+            controller: categoryController,
+            decoration: InputDecoration(
+              hintText: 'Enter recipe category (e.g., vegetarian, vegan, gluten-free)',
+            ),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter a category';
               }
               return null;
             },
@@ -126,6 +140,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                     'recipeName': recipeNameController.text,
                     'ingredients': ingredientsController.text,
                     'instructions': instructionsController.text,
+                    'category': categoryController.text, 
                   }); 
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(

@@ -2,12 +2,12 @@
 import 'package:flutter/material.dart';
 
 class FullRecipeScreen extends StatelessWidget {
-  final String recipeTitle;
-  final List<String> ingredientLines;
+  String recipeTitle;
+  List<String> ingredientLines;
 
   FullRecipeScreen(String s, {
-      required this.recipeTitle, 
-      required this.ingredientLines, 
+    required this.recipeTitle, 
+    required this.ingredientLines, 
   });
 
   @override

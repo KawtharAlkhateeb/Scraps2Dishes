@@ -1,9 +1,10 @@
+// ignore: file_names
 import 'package:flutter/material.dart';
 import 'userInput.dart'; 
-import 'recipes.dart'; 
 
 class FoodWasteInputPage extends StatefulWidget {
   @override
+  // ignore: library_private_types_in_public_api
   _FoodWasteInputPageState createState() => _FoodWasteInputPageState();
 }
 
@@ -14,9 +15,16 @@ class _FoodWasteInputPageState extends State<FoodWasteInputPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('User Input'),
-        backgroundColor: Color.fromARGB(255, 255, 226, 107),
-        leading: Image.asset('images/Logo 1.png', width: 250, height: 250,),
+        title: Text("Search for Recipes", style: TextStyle(color: Color.fromARGB(255, 82, 181, 77), fontWeight: FontWeight.bold)),
+        backgroundColor: Color.fromARGB(255, 255, 255, 255),
+        leading: CircleAvatar( 
+          radius: 14, //radius of avatar 
+          backgroundColor: Color.fromARGB(255, 82, 181, 77), //color 
+          child: Padding( 
+            padding: const EdgeInsets.all(2), // Border radius 
+            child: ClipOval(child: Image.asset('images/Logo 1.png')), 
+          ), 
+        )
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

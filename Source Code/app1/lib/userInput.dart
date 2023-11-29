@@ -13,10 +13,10 @@ class DropdownButtonApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-        title: Text('Dietary Restrictions Selection'),
-        backgroundColor: Color.fromARGB(255, 255, 226, 107),
-        leading: Image.asset('images/Logo 1.png', width: 250, height: 250,),
-      ) ,
+          title: Text('Dietary Restrictions Selection'),
+          backgroundColor: Color.fromARGB(255, 255, 226, 107),
+          leading: Image.asset('images/Logo 1.png', width: 250, height: 250,),
+        ) ,
         body: const Center( 
           child: 
           DropdownButtonExample(),
@@ -88,10 +88,10 @@ class _DropdownButtonExampleState extends State<DropdownButtonExample> {
             Navigator.push(
               context,
               MaterialPageRoute(
-              builder: (context) => RecipeSearchScreen(
-                dietaryRestriction: "Vegan",
-                query:'Chicken', 
-              ),
+                builder: (context) => RecipeSearchScreen(
+                  dietaryRestriction: "Vegan",
+                  query:'Banana', 
+                ),
               ),
             );
 

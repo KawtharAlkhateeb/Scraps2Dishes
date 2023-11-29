@@ -1,7 +1,6 @@
-import 'package:app1/FoodWasteInputPage.dart';
+
 import 'package:app1/HomePage.dart';
 import 'package:flutter/material.dart';
-import 'recipes.dart'; 
 
 class LogoAnimationScreen extends StatefulWidget {
   @override
@@ -36,7 +35,7 @@ class _LogoAnimationScreenState extends State<LogoAnimationScreen> with SingleTi
   void _navigateToMainContent() {
     Navigator.of(context).pushReplacement(MaterialPageRoute(
       builder: (context) {
-        return MyHomePage(title: 'Scraps2Dishes',);
+        return MyHomePage();
       },
     ));
   }

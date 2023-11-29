@@ -9,8 +9,15 @@ class CookbookScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("Community Cookbook", style: TextStyle(color: Color.fromARGB(255, 82, 181, 77), fontWeight: FontWeight.bold)),
-        backgroundColor: Color.fromARGB(255, 255, 226, 107),
-        leading: Image.asset('images/Logo 1.png', width: 250, height: 250,),
+        backgroundColor: Color.fromARGB(255, 255, 255, 255),
+        leading: CircleAvatar( 
+          radius: 14, //radius of avatar 
+          backgroundColor: Color.fromARGB(255, 82, 181, 77), //color 
+          child: Padding( 
+            padding: const EdgeInsets.all(2), // Border radius 
+            child: ClipOval(child: Image.asset('images/Logo 1.png')), 
+          ), 
+        )
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance.collection('recipes').snapshots(),
@@ -31,6 +38,7 @@ class CookbookScreen extends StatelessWidget {
               ingredients: data['ingredients'] ?? '',
               instructions: data['instructions'] ?? '',
               userName: data['userId'] ?? '',
+              category: data['category']
             );
           }).toList();
 
@@ -42,6 +50,7 @@ class CookbookScreen extends StatelessWidget {
                 ingredients: 'Default Ingredients',
                 instructions: 'Default Instructions',
                 userName: 'Default User',
+                category: 'Dafault', 
               ),
               );
             },
@@ -86,15 +95,6 @@ class RecipeCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Image.network(
-          //   recipe.imageUrl,
-          //   width: double.infinity,
-          //   height: 150.0,
-          //   fit: BoxFit.cover,
-          //   errorBuilder: (context, error, stackTrace) {
-          //     return Icon(Icons.error); // Display an error icon or placeholder
-          //   },
-          // ),
           Padding(
             padding: EdgeInsets.all(10.0),
             child: Column(
@@ -105,11 +105,41 @@ class RecipeCard extends StatelessWidget {
                   style: TextStyle(color: Color.fromARGB(255, 82, 181, 77),fontSize: 18.0, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: 8.0),
-                Text('Ingredients: ${recipe.ingredients}', style: TextStyle(color: Color.fromARGB(255, 53, 55, 53), fontWeight: FontWeight.bold)),
+                Text(
+                  'Ingredients:',
+                  style: TextStyle(color: Color.fromARGB(255, 53, 55, 53), fontWeight: FontWeight.bold),
+                ),
                 SizedBox(height: 8.0),
-                Text('Instructions: ${recipe.instructions}', style: TextStyle(color: Color.fromARGB(255, 53, 55, 53), fontWeight: FontWeight.bold)),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: recipe.ingredients
+                      .split(',') // Assuming ingredients are separated by commas
+                      .map((ingredient) => Text(
+                            '• $ingredient',
+                            style: TextStyle(color: Color.fromARGB(255, 53, 55, 53)),
+                          ))
+                      .toList(),
+                ),
                 SizedBox(height: 20),
+                Text(
+                  'Instructions:',
+                  style: TextStyle(color: Color.fromARGB(255, 53, 55, 53), fontWeight: FontWeight.bold),
+                ),
+                SizedBox(height: 8.0),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: recipe.instructions
+                      .split(',') // Assuming ingredients are separated by commas
+                      .map((instruction) => Text(
+                            '• $instruction',
+                            style: TextStyle(color: Color.fromARGB(255, 53, 55, 53)),
+                          ))
+                      .toList(),
+                ),
+                SizedBox(height: 10),
                 Text("Added by: ${recipe.userName}",style: TextStyle(color: Color.fromARGB(255, 53, 55, 53))), 
+                SizedBox(height: 10),
+                Text("Category: ${recipe.category}",style: TextStyle(color: Color.fromARGB(255, 53, 55, 53))), 
               ],
             ),
           ),
@@ -124,11 +154,13 @@ class Recipe {
   final String ingredients;
   final String instructions;
   final String userName; 
+  final String category; 
 
   Recipe({
     required this.title,
     required this.ingredients,
     required this.instructions,
     required this.userName, 
+    required this.category
   });
 }

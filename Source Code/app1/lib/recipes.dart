@@ -69,66 +69,23 @@ class _RecipeSearchScreenState extends State<RecipeSearchScreen> {
     }
    Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text('Scraps2Dishes'),
-      //   backgroundColor: Color.fromARGB(255, 255, 226, 107),
-      //   leading: Image.asset('images/Logo 1.png', width: 250, height: 250,),
-      // ),
+      appBar: AppBar(
+        title: Text('Recipes', style: TextStyle(color: Color.fromARGB(255, 82, 181, 77), fontWeight: FontWeight.bold)),
+        backgroundColor: Color.fromARGB(255, 255, 255, 255),
+        leading: CircleAvatar( 
+          radius: 14, //radius of avatar 
+          backgroundColor: Color.fromARGB(255, 82, 181, 77), //color 
+          child: Padding( 
+            padding: const EdgeInsets.all(2), // Border radius 
+            child: ClipOval(child: Image.asset('images/Logo 1.png')), 
+          ), 
+        )
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            Container(
-              child: Row(
-                children:[
-                  IconButton(
-                    icon: Icon(Icons.arrow_back),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                      MaterialPageRoute(builder: (context) => MyHomePage(title: "Scraps2Dishes",)),
-                    );
-                  },
-                  ),
-                  Center(
-                    
-                    child: 
-                      CircleAvatar( 
-                        radius: 40.0, 
-                        backgroundColor: Color.fromARGB(255, 82, 181, 77), 
-                        child: Padding( 
-                            padding: const EdgeInsets.all(2.5), 
-                            child: ClipOval(child: Image.asset('images/Logo 1.png')), 
-                        ), 
-                      )
-                  ),
-                ], 
-              ), 
-            ),
             SizedBox( height: 30, width: 30,), 
-            // TextField(
-            //   controller: _searchController,
-            //   decoration: InputDecoration(
-            //     hintText: 'Enter ingredients (e.g., chicken, rice)',
-            //   ),
-            // ),
-            // SizedBox(height: 15),
-            // ElevatedButton(
-            //   onPressed: () {
-            //     String query = _searchController.text;
-            //     _searchRecipes(query);
-            //   },
-            //   style: ElevatedButton.styleFrom(
-            //    shape: RoundedRectangleBorder(
-            //     borderRadius: BorderRadius.circular(5.0),
-            //   ),
-            //   backgroundColor: Color.fromARGB(255, 82, 181, 77),
-            // ),
-            // child: const Text(
-            //   "Search Recipes",
-            //   style: TextStyle(fontSize: 18),
-            // ),
-            // ),
             SizedBox(height: 20),
             Expanded(
               child: ListView.builder(
@@ -143,6 +100,9 @@ class _RecipeSearchScreenState extends State<RecipeSearchScreen> {
                   final source = recipe['source'];
                   final recipeUrl = recipe['url'];
                   final healthLabels = recipe['healthLabels']; 
+                  final ingredients = recipe['ingredients'];
+                  final oneIngredient = ingredients[1]['food']; 
+                  print ("ingredient 1: $oneIngredient"); 
 
                   // Build recipe cards here
                   return Card(
@@ -165,17 +125,20 @@ class _RecipeSearchScreenState extends State<RecipeSearchScreen> {
                           title: Text('Source: $source'),
                         ),
                         ListTile(
-                          title: Text("Health labels: $healthLabels"), 
-                        ), 
+                          title: Text('Health labels:'),
+                          subtitle: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: (healthLabels as List<dynamic>)
+                                .map((label) => Text(label.toString()))
+                                .toList(),
+                          ),
+                        ),
                         ElevatedButton(
                           onPressed: () {
                             // Navigator.push(
                             //   context,
                             //   MaterialPageRoute(
-                            //     builder: (context) => FullRecipeScreen(
-                            //       recipeTitle: _searchResults[index]['recipe']['label'],
-                            //       ingredientLines: List<String>.from(_searchResults[index]['recipe']['ingredientLines']),
-                            //     ),
+                            //     builder: (context) => FullRecipeScreen(recipeTitle: label, ingredientLines: [ingredientLines],                                ),
                             //   ),
                             // );
                           },
@@ -187,6 +150,13 @@ class _RecipeSearchScreenState extends State<RecipeSearchScreen> {
                             _launchURL(recipeUrl);
                           },
                           child: Text('View Recipe on $source'),
+                        ),
+                        const SizedBox(height: 10),
+                        ElevatedButton(
+                          onPressed: () {
+                            //
+                          },
+                          child: Text('Select Recipe'),
                         ),
                       ],
                     ),
