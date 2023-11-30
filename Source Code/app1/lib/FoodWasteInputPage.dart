@@ -48,7 +48,7 @@ class _FoodWasteInputPageState extends State<FoodWasteInputPage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => DropdownButtonApp(),
+                    builder: (context) => DieteryRestictions (queryData: foodWaste,),
                   ),
                 );
               },

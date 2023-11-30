@@ -1,5 +1,6 @@
 import 'package:app1/AddRecipe.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -8,7 +9,12 @@ class CookbookScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Community Cookbook", style: TextStyle(color: Color.fromARGB(255, 82, 181, 77), fontWeight: FontWeight.bold)),
+        title: Text("Community Cookbook", style: GoogleFonts.lato(
+          textStyle: TextStyle(
+            color: Color.fromARGB(255, 82, 181, 77)),
+            fontWeight: FontWeight.bold, 
+          )
+        ), 
         backgroundColor: Color.fromARGB(255, 255, 255, 255),
         leading: CircleAvatar( 
           radius: 14, //radius of avatar 
@@ -102,12 +108,19 @@ class RecipeCard extends StatelessWidget {
               children: [
                 Text(
                   recipe.title,
-                  style: TextStyle(color: Color.fromARGB(255, 82, 181, 77),fontSize: 18.0, fontWeight: FontWeight.bold),
+                  style: GoogleFonts.lato(
+                    textStyle: TextStyle(color: Color.fromARGB(255, 82, 181, 77)),
+                    fontWeight: FontWeight.bold, 
+                    fontSize: 20, 
+                  ), 
                 ),
                 SizedBox(height: 8.0),
                 Text(
                   'Ingredients:',
-                  style: TextStyle(color: Color.fromARGB(255, 53, 55, 53), fontWeight: FontWeight.bold),
+                  style: GoogleFonts.lato(
+                    textStyle: TextStyle(
+                      color: Color.fromARGB(255, 53, 55, 53), fontWeight: FontWeight.bold),
+                  ), 
                 ),
                 SizedBox(height: 8.0),
                 Column(
@@ -116,14 +129,20 @@ class RecipeCard extends StatelessWidget {
                       .split(',') // Assuming ingredients are separated by commas
                       .map((ingredient) => Text(
                             '• $ingredient',
-                            style: TextStyle(color: Color.fromARGB(255, 53, 55, 53)),
+                            style: GoogleFonts.lato(
+                              textStyle: TextStyle(
+                                color: Color.fromARGB(255, 53, 55, 53)),
+                            ), 
                           ))
                       .toList(),
                 ),
                 SizedBox(height: 20),
                 Text(
                   'Instructions:',
-                  style: TextStyle(color: Color.fromARGB(255, 53, 55, 53), fontWeight: FontWeight.bold),
+                  style: GoogleFonts.lato(
+                    textStyle: TextStyle(
+                      color: Color.fromARGB(255, 53, 55, 53), fontWeight: FontWeight.bold),
+                  ), 
                 ),
                 SizedBox(height: 8.0),
                 Column(
@@ -132,14 +151,27 @@ class RecipeCard extends StatelessWidget {
                       .split(',') // Assuming ingredients are separated by commas
                       .map((instruction) => Text(
                             '• $instruction',
-                            style: TextStyle(color: Color.fromARGB(255, 53, 55, 53)),
+                            style: GoogleFonts.lato(
+                              textStyle: TextStyle(color: Color.fromARGB(255, 53, 55, 53)),
+                            ), 
                           ))
                       .toList(),
                 ),
                 SizedBox(height: 10),
-                Text("Added by: ${recipe.userName}",style: TextStyle(color: Color.fromARGB(255, 53, 55, 53))), 
+                Text("Added by: ${recipe.userName}",style:GoogleFonts.lato( 
+                  textStyle: TextStyle(
+                    color: Color.fromARGB(255, 53, 55, 53), 
+                  )
+                ),
+                ),  
                 SizedBox(height: 10),
-                Text("Category: ${recipe.category}",style: TextStyle(color: Color.fromARGB(255, 53, 55, 53))), 
+                Text("Category: ${recipe.category}",style: GoogleFonts.lato(
+                  textStyle: TextStyle(
+                    color: Color.fromARGB(255, 101, 128, 101), 
+                    fontWeight: FontWeight.w600, 
+                  )
+                ), 
+                ), 
               ],
             ),
           ),

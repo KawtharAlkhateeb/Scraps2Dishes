@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           title: Text("Add a recipe to the community book", style: TextStyle(color: Color.fromARGB(255, 82, 181, 77), fontWeight: FontWeight.bold)),
-          backgroundColor: Color.fromARGB(255, 255, 226, 107),
+          backgroundColor: Color.fromARGB(255, 255, 255, 255),
           leading: CircleAvatar( 
             radius: 14, //radius of avatar 
             backgroundColor: Color.fromARGB(255, 82, 181, 77), //color 
@@ -61,6 +61,17 @@ class MyCustomFormState extends State<MyCustomForm> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SizedBox(height: 50),
+          Text.rich(
+            TextSpan(
+              children: <TextSpan>[
+                TextSpan(
+                  text:
+                    'Please note that the recipe you are adding will be shared in the Community Cookbook. Take a moment to review before submitting',
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: 20), 
           TextFormField(
             controller: nameController,
             decoration: InputDecoration(

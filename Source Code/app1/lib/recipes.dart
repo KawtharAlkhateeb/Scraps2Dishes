@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'package:app1/HomePage.dart';
+import 'package:app1/ReportIngredients.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'fullRecipeScreen.dart'; 
 
-// Define a function to launch the URL
 void _launchURL(String url) async {
   final Uri uri = Uri.parse(url); // Convert the String URL to a Uri
   if (await canLaunchUrl(uri)) {
@@ -45,8 +45,6 @@ class RecipeSearchScreen extends StatefulWidget {
 class _RecipeSearchScreenState extends State<RecipeSearchScreen> {
   List<dynamic> _searchResults = [];
   Future<void> _searchRecipes() async {
-    // const String appId = '7b9709ca';
-    // const String appKey = '56a4fea3e7b52a84e5f1f1df6fc822a1';
 
     final apiUrl = 'https://api.edamam.com/api/recipes/v2?type=public&q=${widget.query}&app_id=7b9709ca&app_key=7e0129f0430ff85fc362dede31008d5f&health=vegan';
 
@@ -74,9 +72,9 @@ class _RecipeSearchScreenState extends State<RecipeSearchScreen> {
         backgroundColor: Color.fromARGB(255, 255, 255, 255),
         leading: CircleAvatar( 
           radius: 14, //radius of avatar 
-          backgroundColor: Color.fromARGB(255, 82, 181, 77), //color 
+          backgroundColor: Color.fromARGB(255, 82, 181, 77), 
           child: Padding( 
-            padding: const EdgeInsets.all(2), // Border radius 
+            padding: const EdgeInsets.all(2),
             child: ClipOval(child: Image.asset('images/Logo 1.png')), 
           ), 
         )
@@ -91,11 +89,11 @@ class _RecipeSearchScreenState extends State<RecipeSearchScreen> {
               child: ListView.builder(
                 itemCount: _searchResults.length,
                 itemBuilder: (context, index) {
-                  // Build recipe cards here
+                 
                   // _searchResults[index] contains recipe data
                   final recipe = _searchResults[index]['recipe']; 
                   final image = recipe['image'];
-                  final label = recipe['label'];
+                  String label = recipe['label'];
                   final ingredientLines = recipe['ingredientLines'];
                   final source = recipe['source'];
                   final recipeUrl = recipe['url'];
@@ -103,8 +101,6 @@ class _RecipeSearchScreenState extends State<RecipeSearchScreen> {
                   final ingredients = recipe['ingredients'];
                   final oneIngredient = ingredients[1]['food']; 
                   print ("ingredient 1: $oneIngredient"); 
-
-                  // Build recipe cards here
                   return Card(
                     child: Column(
                       children: [
@@ -129,19 +125,29 @@ class _RecipeSearchScreenState extends State<RecipeSearchScreen> {
                           subtitle: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: (healthLabels as List<dynamic>)
-                                .map((label) => Text(label.toString()))
-                                .toList(),
+                              .where((label) => label.toString() == widget.dietaryRestriction)
+                              .map((label) => Text(label.toString()))
+                              .toList(),
                           ),
                         ),
                         ElevatedButton(
                           onPressed: () {
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //     builder: (context) => FullRecipeScreen(recipeTitle: label, ingredientLines: [ingredientLines],                                ),
-                            //   ),
-                            // );
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => FullRecipeScreen(
+                                  recipeTitle: label,
+                                  ingredientLines: ingredientLines ?? ['Ingredients not available'],
+                                ),
+                              ),
+                            );
                           },
+                          style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5.0),
+                            ),
+                            backgroundColor: Color.fromARGB(255, 82, 181, 77),
+                          ), 
                           child: Text('View more'),
                         ),
                         const SizedBox(height: 10),
@@ -149,13 +155,41 @@ class _RecipeSearchScreenState extends State<RecipeSearchScreen> {
                           onPressed: () {
                             _launchURL(recipeUrl);
                           },
+                          style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5.0),
+                            ),
+                            backgroundColor: Color.fromARGB(255, 82, 181, 77),
+                          ), 
                           child: Text('View Recipe on $source'),
                         ),
                         const SizedBox(height: 10),
                         ElevatedButton(
                           onPressed: () {
-                            //
+                            List<String> foodList = [];
+                            for (var i = 0; i < ingredients.length; i++) {
+                              var food = ingredients[i]["food"];
+                              if (food != null) {
+                                foodList.add(food);
+                              }
+                            }
+                            print(foodList); 
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ImpactReport(
+                                  recipeTitle: label,
+                                  ingredients: foodList,
+                                ),
+                              ),
+                            );
                           },
+                          style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5.0),
+                            ),
+                            backgroundColor: Color.fromARGB(255, 82, 181, 77),
+                          ), 
                           child: Text('Select Recipe'),
                         ),
                       ],

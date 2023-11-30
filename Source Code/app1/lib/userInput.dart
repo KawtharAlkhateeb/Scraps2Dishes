@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 
 const List<String> list = <String>['', 'Vegetarian', 'Vegan', 'Gluten-Free', 'Dairy-Free', 'Nut-Free'];
 
-class DropdownButtonApp extends StatelessWidget {
-  const DropdownButtonApp({super.key});
+class DieteryRestictions extends StatelessWidget {
+  final String queryData;
+  const DieteryRestictions({Key? key, required this.queryData}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,13 +14,20 @@ class DropdownButtonApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Dietary Restrictions Selection'),
-          backgroundColor: Color.fromARGB(255, 255, 226, 107),
-          leading: Image.asset('images/Logo 1.png', width: 250, height: 250,),
-        ) ,
-        body: const Center( 
+          title: Text("Dietary Restrictions Selection ", style: TextStyle(color: Color.fromARGB(255, 82, 181, 77), fontWeight: FontWeight.bold)),
+          backgroundColor: Color.fromARGB(255, 255, 255, 255),
+          leading: CircleAvatar( 
+            radius: 14, //radius of avatar 
+            backgroundColor: Color.fromARGB(255, 82, 181, 77), //color 
+            child: Padding( 
+              padding: const EdgeInsets.all(2), // Border radius 
+              child: ClipOval(child: Image.asset('images/Logo 1.png')), 
+            ), 
+          )
+        ),
+        body: Center( 
           child: 
-          DropdownButtonExample(),
+          DropdownButtonExample(ingredientData: queryData,),
         ),
       ),
     );
@@ -27,7 +35,8 @@ class DropdownButtonApp extends StatelessWidget {
 }
 
 class DropdownButtonExample extends StatefulWidget {
-  const DropdownButtonExample({Key? key});
+  final String ingredientData; 
+  const DropdownButtonExample({Key? key, required this.ingredientData}) : super(key: key);
 
   @override
   State<DropdownButtonExample> createState() => _DropdownButtonExampleState();
@@ -35,11 +44,11 @@ class DropdownButtonExample extends StatefulWidget {
 
 class _DropdownButtonExampleState extends State<DropdownButtonExample> {
   String dropdownValue = list.first;
+  
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      // mainAxisAlignment: MainAxisAlignment.center,
       children: [
         SizedBox(height: 30,),
         Text(
@@ -89,8 +98,8 @@ class _DropdownButtonExampleState extends State<DropdownButtonExample> {
               context,
               MaterialPageRoute(
                 builder: (context) => RecipeSearchScreen(
-                  dietaryRestriction: "Vegan",
-                  query:'Banana', 
+                  dietaryRestriction: dropdownValue,
+                  query: widget.ingredientData, 
                 ),
               ),
             );
