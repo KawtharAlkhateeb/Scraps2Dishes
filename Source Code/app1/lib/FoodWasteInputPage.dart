@@ -1,5 +1,6 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'userInput.dart'; 
 
 class FoodWasteInputPage extends StatefulWidget {
@@ -15,7 +16,12 @@ class _FoodWasteInputPageState extends State<FoodWasteInputPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Search for Recipes", style: TextStyle(color: Color.fromARGB(255, 82, 181, 77), fontWeight: FontWeight.bold)),
+        title: Text("Search for Recipes", style: GoogleFonts.lato(
+          textStyle: TextStyle(
+            color: Color.fromARGB(255, 82, 181, 77)),
+            fontWeight: FontWeight.bold, 
+          )
+        ), 
         backgroundColor: Color.fromARGB(255, 255, 255, 255),
         leading: CircleAvatar( 
           radius: 14, //radius of avatar 

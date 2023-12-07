@@ -1,5 +1,6 @@
 import 'package:app1/recipes.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 
 const List<String> list = <String>['', 'Vegetarian', 'Vegan', 'Gluten-Free', 'Dairy-Free', 'Nut-Free'];
@@ -14,8 +15,13 @@ class DieteryRestictions extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Dietary Restrictions Selection ", style: TextStyle(color: Color.fromARGB(255, 82, 181, 77), fontWeight: FontWeight.bold)),
-          backgroundColor: Color.fromARGB(255, 255, 255, 255),
+          title: Text("Dietary Restrictions Selection ", style: GoogleFonts.lato(
+            textStyle: TextStyle(
+              color: Color.fromARGB(255, 82, 181, 77)),
+              fontWeight: FontWeight.bold, 
+            )
+          ),
+          backgroundColor: Color.fromARGB(255, 255, 255, 255), 
           leading: CircleAvatar( 
             radius: 14, //radius of avatar 
             backgroundColor: Color.fromARGB(255, 82, 181, 77), //color 

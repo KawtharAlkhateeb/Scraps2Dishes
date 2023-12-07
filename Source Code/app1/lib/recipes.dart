@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:app1/HomePage.dart';
 import 'package:app1/ReportIngredients.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -68,7 +69,12 @@ class _RecipeSearchScreenState extends State<RecipeSearchScreen> {
    Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Recipes', style: TextStyle(color: Color.fromARGB(255, 82, 181, 77), fontWeight: FontWeight.bold)),
+        title: Text('Recipes', style: GoogleFonts.lato(
+          textStyle: TextStyle(
+            color: Color.fromARGB(255, 82, 181, 77)),
+            fontWeight: FontWeight.bold, 
+          )
+        ), 
         backgroundColor: Color.fromARGB(255, 255, 255, 255),
         leading: CircleAvatar( 
           radius: 14, //radius of avatar 
@@ -104,15 +110,15 @@ class _RecipeSearchScreenState extends State<RecipeSearchScreen> {
                   return Card(
                     child: Column(
                       children: [
-                        Image.network(
-                          Uri.encodeFull(image),
-                          width: 300, // Adjust width as needed
-                          height: 200, // Adjust height as needed
-                          fit: BoxFit.cover,
-                          errorBuilder: (context, error, stackTrace) {
-                            return Icon(Icons.error); // Display an error icon or placeholder
-                          },
-                        ),
+                        // Image.network(
+                        //   Uri.encodeFull(image),
+                        //   width: 300, // Adjust width as needed
+                        //   height: 200, // Adjust height as needed
+                        //   fit: BoxFit.cover,
+                        //   errorBuilder: (context, error, stackTrace) {
+                        //     return Icon(Icons.error); // Display an error icon or placeholder
+                        //   },
+                        // ),
                         ListTile(
                           title: Text(label ?? 'Recipe Label not available'),
                           subtitle: Text(ingredientLines?.join(', ') ?? 'Ingredients not available'),
@@ -137,7 +143,7 @@ class _RecipeSearchScreenState extends State<RecipeSearchScreen> {
                               MaterialPageRoute(
                                 builder: (context) => FullRecipeScreen(
                                   recipeTitle: label,
-                                  ingredientLines: ingredientLines ?? ['Ingredients not available'],
+                                  ingredientLines: ingredientLines,
                                 ),
                               ),
                             );

@@ -16,10 +16,3 @@ void main() async {
   );
 }
 
-
-// void main() {
-//   // Example list of ingredients
-//   final ingredients = ['Olive oil', 'Garlic', 'Yogurt'];
-//   searchIngredients(ingredients);
-// }
-

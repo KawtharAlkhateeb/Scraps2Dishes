@@ -1,4 +1,6 @@
+import 'package:app1/HomePage.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'CookBook.dart'; 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -16,7 +18,12 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Add a recipe to the community book", style: TextStyle(color: Color.fromARGB(255, 82, 181, 77), fontWeight: FontWeight.bold)),
+          title: Text("Add a recipe to the community book", style: GoogleFonts.lato(
+            textStyle: TextStyle(
+              color: Color.fromARGB(255, 82, 181, 77)),
+              fontWeight: FontWeight.bold, 
+            )
+          ), 
           backgroundColor: Color.fromARGB(255, 255, 255, 255),
           leading: CircleAvatar( 
             radius: 14, //radius of avatar 
@@ -67,6 +74,13 @@ class MyCustomFormState extends State<MyCustomForm> {
                 TextSpan(
                   text:
                     'Please note that the recipe you are adding will be shared in the Community Cookbook. Take a moment to review before submitting',
+                  style: GoogleFonts.lato(
+                    textStyle: TextStyle(
+                      color: Color.fromARGB(255, 82, 181, 77),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15, 
+                    ), 
+                  )
                 ),
               ],
             ),
@@ -102,7 +116,7 @@ class MyCustomFormState extends State<MyCustomForm> {
             controller: ingredientsController,
             maxLines: null,
             decoration: InputDecoration(
-              hintText: 'Enter ingredients (comma-separated (,))',
+              hintText: 'Enter ingredients (comma-separated ,)',
             ),
             validator: (value) {
               if (value == null || value.isEmpty) {
@@ -116,7 +130,7 @@ class MyCustomFormState extends State<MyCustomForm> {
             controller: instructionsController,
             maxLines: null,
             decoration: InputDecoration(
-              hintText: 'Enter recipe instructions',
+              hintText: 'Enter recipe instructions(comma-sepeaated,)',
             ),
             validator: (value) {
               if (value == null || value.isEmpty) {
@@ -177,8 +191,22 @@ class MyCustomFormState extends State<MyCustomForm> {
                     width:10,
                   ),
                 ],
-                ),
+              ),
             ),
+          ),
+          IconButton(
+            icon: Icon(
+              Icons.arrow_back, 
+              color:Color.fromARGB(255, 82, 181, 77),
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => MyHomePage(),
+                ),
+              );
+            },
           ),
         ],
       ),

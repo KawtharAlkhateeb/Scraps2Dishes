@@ -44,10 +44,15 @@ class _ImpactReportState extends State<ImpactReport> {
         if (products != null && products is List && products.isNotEmpty) {
           final firstProduct = products[0];
           Map<String, dynamic> ecoscore = firstProduct['ecoscore_data'];
-          Map<String, dynamic> agribalyse = ecoscore['agribalyse'];
-          final productCo2Score = agribalyse['co2_total'];
-          totalCo2Score += (productCo2Score ?? 0.0);
-          print('Total c02 score : $totalCo2Score'); 
+          if(ecoscore !=null){
+            Map<String, dynamic> agribalyse = ecoscore['agribalyse'];
+            final productCo2Score = agribalyse['co2_total'];
+            totalCo2Score += (productCo2Score ?? 0.0);
+            print('Total c02 score : $totalCo2Score');
+          }
+          else{
+            print("Cannot find info about the ingredients eco score"); 
+          } 
         }
       }
     }
@@ -107,7 +112,6 @@ class _ImpactReportState extends State<ImpactReport> {
                             color: Color.fromARGB(255, 82, 181, 77),
                           ),
                         ),
-                        SizedBox(width: 5),
                         Text(
                           '${totalCo2Score.toStringAsFixed(2)} gCO2',
                           style: TextStyle(
@@ -116,7 +120,6 @@ class _ImpactReportState extends State<ImpactReport> {
                             color: Color.fromARGB(255, 82, 181, 77),
                           ),
                         ),
-                        SizedBox(width: 10),
                         IconButton(
                           icon: Icon(
                             Icons.eco_sharp,
