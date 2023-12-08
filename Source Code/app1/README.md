@@ -37,10 +37,11 @@ Before installing Scraps2Dishes, ensure that you have the following prerequisite
     flutter pub get
 
 4. **Configure Firebase:**
-    1. Set up a Firebase project: Firebase Console
+    1. Set up a Firebase project: [Firebase Console](https://console.firebase.google.com)
     2. Obtain the google-services.json file and place it in the android/app directory.
 4. **Run the App:**
-    flutter run
+     ```bash
+   flutter run
 ## Usage
 
 ### Getting Started
