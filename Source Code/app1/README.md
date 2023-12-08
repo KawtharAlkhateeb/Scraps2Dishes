@@ -31,10 +31,12 @@ Before installing Scraps2Dishes, ensure that you have the following prerequisite
    ```bash
    git clone https://github.com/your-username/scraps2dishes.git
 2. **Navigate to the Project Directory:**
-    cd scraps2dishes
+     ```bash
+   cd scraps2dishes
 
 3. **Install Dependencies:**
-    flutter pub get
+     ```bash
+   flutter pub get
 
 4. **Configure Firebase:**
     1. Set up a Firebase project: [Firebase Console](https://console.firebase.google.com)
