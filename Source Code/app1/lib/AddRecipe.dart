@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'CookBook.dart'; 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
@@ -73,7 +72,7 @@ class MyCustomFormState extends State<MyCustomForm> {
               children: <TextSpan>[
                 TextSpan(
                   text:
-                    'Please note that the recipe you are adding will be shared in the Community Cookbook. Take a moment to review before submitting',
+                    'Please note that the recipe you are adding will be shared in the Community Cookbook. Take a moment to review before submitting. And please note that we encourage you to add recipes that use food leftovers',
                   style: GoogleFonts.lato(
                     textStyle: TextStyle(
                       color: Color.fromARGB(255, 82, 181, 77),
