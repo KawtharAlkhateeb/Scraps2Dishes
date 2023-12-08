@@ -9,8 +9,6 @@
 3. [Usage](#usage)
     - [Getting Started](#getting-started)
     - [Key Features](#key-features)
-4. [FAQs](#faqs)
-5. [Support and Feedback](#support-and-feedback)
 
 ## Introduction
 
